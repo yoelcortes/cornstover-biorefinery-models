@@ -4,9 +4,11 @@ Created on Thu Mar 11 21:06:53 2021
 
 @author: joy_c
 """
-
+import os
 from SALib.sample import saltelli
 from SALib.sample import morris as morris_sampling 
+
+folder = os.path.dirname(__file__)
 
 def define_inputs(model):
     '''
@@ -83,8 +85,12 @@ def generate_samples(model, inputs, kind, N, seed=None, **kwargs):
                          f'not "{kind}".')
 
 
-#%%
-import numpy as np
-problem = define_inputs(model)
-M_sample = generate_samples(model, problem, 'Saltelli', 10000, seed=311)
-np.savetxt('sample_matrix.csv', M_sample, delimiter=',')
+# %%
+
+if __name__ == '__main__':
+    from cornstover_models.model import model
+    import numpy as np
+    problem = define_inputs(model)
+    M_sample = generate_samples(model, problem, 'Saltelli', 10, seed=311)
+    file_name = os.path.join(folder, 'sample_matrix.tsv')
+    np.savetxt(file_name, M_sample, delimiter='\t')
