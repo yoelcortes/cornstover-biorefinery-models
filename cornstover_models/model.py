@@ -77,7 +77,7 @@ def set_discount_rate(discount_rate):
 
 @parameter(
     element='Economics', 
-    distribution=shape.Uniform(20, 80),
+    distribution=shape.Triangle(20, 23, 100),
     units='%-duration'
 )
 def set_depreciation_schedule(percent_duration):
