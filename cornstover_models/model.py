@@ -64,13 +64,25 @@ def set_discount_rate(discount_rate):
 # TODO: Find what type of depreciation schedules
 # are used (hopefully MARCS) and whether a 30 yr
 # depreciation is realistic for MARCS.
+# @parameter(
+#     element='Economics', 
+#     distribution=shape.Uniform(7, 20),
+#     units='MACRS-Year'
+# )
+# def set_depreciation_schedule(depreciation_schedule):
+#     start, end = cs.cornstover_tea.duration
+#     years = min(valid_depreciation_schedules, key=lambda x: abs(depreciation_schedule - x))
+#     schedule = 'MACRS' + str(years)
+#     cs.cornstover_tea.TEAs[0].depreciation = schedule
+
 @parameter(
     element='Economics', 
-    distribution=shape.Uniform(7, 20),
-    units='MACRS-Year'
+    distribution=shape.Triangle(20, 23, 100),
+    units='%-duration'
 )
-def set_depreciation_schedule(depreciation_schedule):
+def set_depreciation_schedule(percent_duration):
     start, end = cs.cornstover_tea.duration
+    depreciation_schedule = percent_duration / 100 * (end-start)
     years = min(valid_depreciation_schedules, key=lambda x: abs(depreciation_schedule - x))
     schedule = 'MACRS' + str(years)
     cs.cornstover_tea.TEAs[0].depreciation = schedule
