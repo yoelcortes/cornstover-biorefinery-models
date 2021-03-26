@@ -161,7 +161,6 @@ if __name__ == '__main__':
     file_name = os.path.join(folder, 'sample_matrix.tsv')
     matrix = np.loadtxt(file_name, delimiter='\t')
     total = matrix.shape[0]
-    model.exception_hook = 'raise'
     model.load_samples(matrix)
     model.evaluate()
     file_name = os.path.join(folder, 'results.xlsx')

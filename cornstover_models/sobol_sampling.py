@@ -90,7 +90,6 @@ def generate_samples(model, inputs, kind, N, seed=None, **kwargs):
 if __name__ == '__main__':
     from cornstover_models.model import model
     import numpy as np
-    problem = define_inputs(model)
-    M_sample = generate_samples(model, problem, 'Saltelli', 10, seed=311)
+    M_sample = model.sample(rule='Saltelli', N=10, seed=311)
     file_name = os.path.join(folder, 'sample_matrix.tsv')
     np.savetxt(file_name, M_sample, delimiter='\t')
