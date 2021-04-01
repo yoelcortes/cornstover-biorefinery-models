@@ -134,7 +134,7 @@ def set_process_water_price(process_water_price):
 )
 def set_electricity_price(electricity_price):
     bst.PowerUtility.price = electricity_price
-    
+
 # # TODO: Units are wrong
 # # 0.5 USD/GJ = 0.0277 USD/kg
 # # However, this doesn't affect simulations as 
@@ -149,7 +149,7 @@ def set_electricity_price(electricity_price):
 # )
 # def set_natural_gas_price(natural_gas_price):
 #     cs.BT.natural_gas_price = 0.0554 * natural_gas_price
-    
+
 @metric(
     name='MPSP',
     units='USD/kg',
